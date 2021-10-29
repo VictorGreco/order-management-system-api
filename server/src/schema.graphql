@@ -1,0 +1,28 @@
+type Query {
+	order(id: ID!): Order
+}
+
+type Mutation {
+	updateOrderState(id: ID!, state: String!): Order
+}
+
+type Order {
+	id: ID!
+	state: String
+	customer: Customer
+	items: [Item]
+	createdAt: String
+	lastUpdated: String
+}
+
+type Customer {
+	id: ID!
+	name: String
+}
+
+type Item {
+	id: ID!
+	name: String
+	price: Int!
+	quantity: Int!
+}
