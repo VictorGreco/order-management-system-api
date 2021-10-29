@@ -3,7 +3,7 @@ type Query {
 }
 
 type Mutation {
-	updateOrderState(id: ID!, state: String!): Order
+	updateSingleOrderState(id: ID!, state: String!): Order
 }
 
 type Order {

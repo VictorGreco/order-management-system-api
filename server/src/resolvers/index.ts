@@ -2,21 +2,19 @@ import { orders } from '../data';
 import { IOrder, ICustomer, IItem } from '../types';
 
 export const Query = {
-    // FIXME: check why id is not being passed from query
-    order: (id: string): IOrder => orders.find(order => order.id === id) || orders[0]
+    order: (_: IOrder, { id }: IOrder): IOrder => orders.find(order => order.id === id)
 }
 
 export const Mutation = {
-    updateSingleOrderState: (id: string, state: string): IOrder => {
-        // FIXME: check why id is not being passed from query
-        const orderFound = orders.find(order => order.id === id) || orders[0];
+    updateSingleOrderState: (_: IOrder, { id, state }: IOrder): IOrder => {
+        const foundOrder = orders.find(order => order.id === id);
 
-        if (orderFound) {
-            orderFound.state = state;
-            orderFound.lastUpdated = `${new Date()}`;
+        if (foundOrder) {
+            foundOrder.state = state;
+            foundOrder.lastUpdated = `${new Date().getTime()}`;
         }
 
-        return orderFound;
+        return foundOrder;
     }
 }
 
