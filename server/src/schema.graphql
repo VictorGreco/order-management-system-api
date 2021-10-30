@@ -3,12 +3,18 @@ type Query {
 }
 
 type Mutation {
-	updateSingleOrderState(id: ID!, state: String!): Order
+	updateSingleOrderState(id: ID!, state: OrderState!): Order
 }
 
-type Order {
+enum OrderState {
+	OPEN
+	IN_PROGRESS
+	COMPLETE
+}
+
+type Order{
 	id: ID!
-	state: String
+	state: OrderState
 	customer: Customer
 	items: [Item]
 	createdAt: String
@@ -23,6 +29,6 @@ type Customer {
 type Item {
 	id: ID!
 	name: String
-	price: Int!
-	quantity: Int!
+	price: Int
+	quantity: Int
 }

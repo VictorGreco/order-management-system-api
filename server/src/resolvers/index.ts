@@ -18,7 +18,6 @@ export const Mutation = {
     }
 }
 
-
 export const Order = {
     id: (order: IOrder): string => order.id,
     state: (order: IOrder): string => order.state,
