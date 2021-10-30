@@ -3,7 +3,7 @@ type Query {
 }
 
 type Mutation {
-	updateSingleOrderState(id: ID!, state: OrderState!): Order
+	updateSingleOrderStateAndEmployee(id: ID!, state: OrderState!, employee: InputEmployee): Order
 }
 
 enum OrderState {
@@ -12,16 +12,27 @@ enum OrderState {
 	COMPLETE
 }
 
-type Order{
+type Order {
 	id: ID!
 	state: OrderState
 	customer: Customer
+	employee: Employee
 	items: [Item]
 	createdAt: String
 	lastUpdated: String
 }
 
 type Customer {
+	id: ID!
+	name: String
+}
+
+input InputEmployee {
+	id: ID!
+	name: String
+}
+
+type Employee {
 	id: ID!
 	name: String
 }

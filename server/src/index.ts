@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { ApolloServer } from 'apollo-server';
+import { ApolloServer, ServerInfo } from 'apollo-server';
 
 import { Query, Order, Mutation, Customer, Item } from './resolvers';
 
@@ -20,9 +20,12 @@ const server = new ApolloServer({
   resolvers,
 })
 
+const handleInitServerLogs = ({ port, subscriptionsPath, url }: ServerInfo): void => {
+  console.log(`Server is running on port: ${port}`);
+  console.log(`GraphQL enpoint: ${subscriptionsPath}`);
+  console.log(`GraphQL Playground is running on ${url}`);
+}
+
 server
   .listen()
-  .then(({ url }: { url: any }) =>
-    // tslint:disable-next-line:no-console
-    console.log(`Server is running on ${url}`)
-  );
+  .then(handleInitServerLogs);

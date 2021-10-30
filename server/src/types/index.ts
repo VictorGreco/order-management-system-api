@@ -1,22 +1,25 @@
-interface IWithId {
+export interface IId {
   id: string;
 }
 
-interface IWithName {
+export interface IName {
   name: string;
 }
 
-export interface IOrder extends IWithId {
+export interface IOrder extends IId {
   state: string;
   customer: ICustomer;
+  employee: IEmployee | null;
   items: IItem[];
   createdAt: string;
   lastUpdated: string;
 }
 
-export interface ICustomer extends IWithId, IWithName {}
+export interface ICustomer extends IId, IName {}
 
-export interface IItem extends IWithId, IWithName {
+export interface IEmployee extends IId, IName {}
+
+export interface IItem extends IId, IName {
   price: number;
   quantity: number;
 }

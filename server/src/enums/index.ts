@@ -1,0 +1,9 @@
+export enum ERROR_CODES {
+    ORDER_NOT_FOUND = "ORDER_NOT_FOUND"
+}
+
+export enum ORDER_STATUS {
+    OPEN = "OPEN",
+    IN_PROGRESS = "IN_PROGRESS",
+    COMPLETE = "COMPLETE"
+}
