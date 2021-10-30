@@ -1,9 +1,6 @@
-type Query {
-	order(id: ID!): Order
-}
-
-type Mutation {
-	updateSingleOrderStateAndEmployee(id: ID!, state: OrderState!, employee: InputEmployee): Order
+input InputEmployee {
+	id: ID!
+	name: String
 }
 
 enum OrderState {
@@ -12,7 +9,19 @@ enum OrderState {
 	COMPLETE
 }
 
-type Order {
+interface Node {
+	id: ID!
+}
+
+type Query {
+	order(id: ID!): Order
+}
+
+type Mutation {
+	updateSingleOrderStateAndEmployee(id: ID!, state: OrderState!, employee: InputEmployee): Order
+}
+
+type Order implements Node {
 	id: ID!
 	state: OrderState
 	customer: Customer
@@ -22,22 +31,17 @@ type Order {
 	lastUpdated: String
 }
 
-type Customer {
+type Customer implements Node {
 	id: ID!
 	name: String
 }
 
-input InputEmployee {
+type Employee implements Node {
 	id: ID!
 	name: String
 }
 
-type Employee {
-	id: ID!
-	name: String
-}
-
-type Item {
+type Item implements Node {
 	id: ID!
 	name: String
 	price: Int
