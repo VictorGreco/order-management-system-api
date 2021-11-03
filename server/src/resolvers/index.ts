@@ -39,7 +39,7 @@ export const Order = {
     id: (order: IOrder): string => order.id,
     state: (order: IOrder): string => order.state,
     customer: (order: IOrder): ICustomer => order.customer,
-    employee: (order: IOrder): IEmployee | null => 
+    employee: (order: IOrder): IEmployee | null =>
         order.state === IN_PROGRESS && order.employee || null,
     items: (order: IOrder): IItem[] => order.items,
     createdAt: (order: IOrder): string => order.createdAt,

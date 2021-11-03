@@ -6,6 +6,9 @@ const QUERY_MOCK: DocumentNode = gql`
         order(id: "ORDER_ID_1") {
             id
             state
+            employee {
+                id
+            }
             customer {
                 id
             }
