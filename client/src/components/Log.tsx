@@ -1,7 +1,7 @@
 import React from 'react';
-import {useQuery, gql} from '@apollo/client';
+import {useQuery, gql, DocumentNode} from '@apollo/client';
 
-const QUERY_MOCK = gql`
+const QUERY_MOCK: DocumentNode = gql`
     {
         order(id: "ORDER_ID_1") {
             id
@@ -13,11 +13,12 @@ const QUERY_MOCK = gql`
     }
 `;
 
-const Log = () => {
-    debugger;
-    const {data} = useQuery(QUERY_MOCK);
+const Log: React.FC = (): JSX.Element => {
+    const {loading, data, error} = useQuery(QUERY_MOCK);
 
-    return data && <>{JSON.stringify(data, null, 2)}</>;
+    return (
+        <>{!loading ? JSON.stringify(data || error, null, 2) : 'Loading...'}</>
+    );
 };
 
 export default Log;
